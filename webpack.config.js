@@ -61,6 +61,7 @@ module.exports = (env, argv) => {
 
     devServer: {
       port: 9100,
+      host: '0.0.0.0',
       stats: {
         colors: true
       },
