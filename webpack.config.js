@@ -1,7 +1,9 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
-const { CheckerPlugin } = require("awesome-typescript-loader");
+const {
+  CheckerPlugin
+} = require("awesome-typescript-loader");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 module.exports = (env, argv) => {
@@ -17,16 +19,14 @@ module.exports = (env, argv) => {
       pathinfo: false
     },
 
-    devtool:
-      argv.mode === "development" ? "cheap-module-source-map" : "source-map",
+    devtool: argv.mode === "development" ? "cheap-module-source-map" : "source-map",
 
     resolve: {
       extensions: [".ts", ".tsx", ".js", ".json"]
     },
 
     module: {
-      rules: [
-        {
+      rules: [{
           test: /\.tsx?$/,
           exclude: /node_modules/,
           use: ["awesome-typescript-loader"]
@@ -38,7 +38,9 @@ module.exports = (env, argv) => {
             "css-loader",
             {
               loader: "postcss-loader",
-              options: { plugins: [require("autoprefixer")] }
+              options: {
+                plugins: [require("autoprefixer")]
+              }
             }
           ]
         }
@@ -58,6 +60,7 @@ module.exports = (env, argv) => {
     ],
 
     devServer: {
+      port: 9100,
       stats: {
         colors: true
       },
@@ -68,7 +71,7 @@ module.exports = (env, argv) => {
       },
       progress: true,
       stats: "errors-only",
-      open: true,
+      open: false,
       contentBase: path.join(__dirname, "public"),
       watchContentBase: true,
       watchOptions: {
